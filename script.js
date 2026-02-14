@@ -42,3 +42,21 @@ document.addEventListener('mousemove', e => {
     document.body.appendChild(particle);
     setTimeout(() => particle.remove(), 500);
 });
+// Typing effect for all elements with text
+function typeText(element, speed = 5) { // speed in ms per character
+    const text = element.textContent;
+    element.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(interval);
+    }, speed);
+}
+
+// Select all elements with visible text
+window.addEventListener('DOMContentLoaded', () => {
+    const textElements = document.querySelectorAll('h1, h2, h3, p, a, strong, span');
+    textElements.forEach(el => typeText(el, 5)); // 5ms per character for fast typing
+});
+
