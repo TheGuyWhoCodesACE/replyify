@@ -1,11 +1,13 @@
-// TYPE TEXT LINE BY LINE
-function typeTextLineByLine(elements, speed = 20) {
+// TYPE TEXT LINE BY LINE, STARTS AFTER PAGE LOAD
+function typeTextLineByLine(elements, speed = 10) {
     let index = 0;
 
     function typeNext() {
         if (index >= elements.length) return;
 
         const el = elements[index];
+        el.style.visibility = 'visible'; // show element when typing starts
+
         const lines = el.innerHTML.split('<br>').map(line => line.trim());
         el.innerHTML = '';
 
@@ -17,6 +19,7 @@ function typeTextLineByLine(elements, speed = 20) {
                 typeNext();
                 return;
             }
+
             let text = lines[lineIndex];
             let charIndex = 0;
             const interval = setInterval(() => {
@@ -25,7 +28,7 @@ function typeTextLineByLine(elements, speed = 20) {
                 if (charIndex > text.length) {
                     clearInterval(interval);
                     lineIndex++;
-                    setTimeout(typeLine, 50); // short delay between lines
+                    setTimeout(typeLine, 30); // short delay between lines
                 }
             }, speed);
         }
@@ -89,8 +92,9 @@ document.addEventListener('mousemove', e => {
 
 // INIT ALL
 window.addEventListener('DOMContentLoaded', () => {
-    const textElements = document.querySelectorAll('h1, h2, h3, p, a, strong, span');
-    typeTextLineByLine(textElements, 20); // 20ms per character for slightly slower
+    const textElements = document.querySelectorAll('.type-text');
+    textElements.forEach(el => el.style.visibility = 'hidden'); // hide text initially
+    typeTextLineByLine(textElements, 10); // 10ms per character, fast
     initScrollFade();
     initCardTilt();
     initMockWindow();
