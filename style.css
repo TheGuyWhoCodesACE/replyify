@@ -1,26 +1,53 @@
-/* Fade-in for scroll-triggered reveal */
-.fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+// 1. Scroll-triggered fade-in
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+// 2. Cards tilt toward mouse
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width/2) / rect.width * 15;
+        const y = (e.clientY - rect.top - rect.height/2) / rect.height * 15;
+        card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    });
+    card.addEventListener('mouseleave', () => card.style.transform = '');
+});
 
-/* Particle cursor (optional, small dot) */
-.particle {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background: #8b5cf6;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.8;
-  transform: translate(-50%, -50%);
-  animation: fade 0.5s linear forwards;
-}
+// 3. Glows follow mouse slightly
+const glow1 = document.querySelector('.glow1');
+const glow2 = document.querySelector('.glow2');
+document.addEventListener('mousemove', e => {
+    const x = e.clientX / window.innerWidth * 100;
+    const y = e.clientY / window.innerHeight * 100;
+    glow1.style.left = `calc(${x}% - 250px)`;
+    glow1.style.top = `calc(${y}% - 250px)`;
+    glow2.style.right = `calc(${100 - x}% - 250px)`;
+    glow2.style.bottom = `calc(${100 - y}% - 250px)`;
+});
 
-@keyframes fade { 100% { opacity: 0; transform: translate(-50%, -50%) scale(2); } }
+// 4. Mock window AI typing on hover
+const typing = document.getElementById('typing');
+const mockWindow = document.getElementById('mock-window');
+mockWindow.addEventListener('mouseenter', () => {
+    typing.textContent = '';
+    let dots = 0;
+    const interval = setInterval(() => {
+        typing.textContent = '.'.repeat(dots % 4);
+        dots++;
+    }, 400);
+    setTimeout(() => {
+        clearInterval(interval);
+        typing.textContent = 'That means a lot! Glad it helped 🙌 More coming soon.';
+    }, 4000);
+});
+
+// 5. Glow color shifts on scroll
+window.addEventListener('scroll', () => {
+    const hue = 240 + window.scrollY / 5;
+    glow1.style.background = `hsl(${hue}, 90%, 50%)`;
+    glow2.style.background = `hsl(${hue + 60}, 80%, 50%)`;
+});
