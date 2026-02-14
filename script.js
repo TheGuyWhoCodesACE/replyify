@@ -1,5 +1,5 @@
 // TYPE TEXT LINE BY LINE, STARTS AFTER PAGE LOAD
-function typeTextLineByLine(elements, speed = 20) {
+function typeTextLineByLine(elements, speed = 40) {
     let index = 0;
 
     function typeNext() {
