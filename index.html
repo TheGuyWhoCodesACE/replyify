@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Replyify – AI Comment Automation for YouTubers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<nav>
-    <div class="logo">Replyify</div>
-    <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#demo">Demo</a>
-        <a href="#download">Download</a>
-    </div>
-</nav>
-
-<header class="hero">
+<header class="hero fade-in">
     <div class="hero-content">
         <h1>AI That Replies<br>While You Create.</h1>
         <p>
@@ -36,36 +13,36 @@
     <div class="glow glow2"></div>
 </header>
 
-<section id="features" class="section">
+<section id="features" class="section fade-in">
     <h2>Designed for Modern Creators</h2>
 
     <div class="card-grid">
-        <div class="card">
+        <div class="card fade-in">
             <h3>🤖 Smart AI Replies</h3>
             <p>Natural, human-like responses tailored to your channel tone.</p>
         </div>
 
-        <div class="card">
+        <div class="card fade-in">
             <h3>🔗 Secure Channel Linking</h3>
             <p>OAuth-based YouTube integration for safe authentication.</p>
         </div>
 
-        <div class="card">
+        <div class="card fade-in">
             <h3>⚡ Real-Time Monitoring</h3>
             <p>Automatically detects and replies to new comments instantly.</p>
         </div>
 
-        <div class="card">
+        <div class="card fade-in">
             <h3>🎛 Tone Customization</h3>
             <p>Control how your AI sounds — funny, professional, hype, calm.</p>
         </div>
     </div>
 </section>
 
-<section id="demo" class="section alt">
+<section id="demo" class="section alt fade-in">
     <h2>See It In Action</h2>
 
-    <div class="mock-window">
+    <div class="mock-window" id="mock-window">
         <div class="window-bar">
             <div class="dot red"></div>
             <div class="dot yellow"></div>
@@ -78,25 +55,8 @@
             </div>
 
             <div class="reply">
-                <strong>Replyify:</strong> “That means a lot! Glad it helped 🙌 More coming soon.”
+                <strong>Replyify:</strong> <span id="typing">...</span>
             </div>
         </div>
     </div>
 </section>
-
-<section id="download" class="section download">
-    <h2>Automate Your Community</h2>
-    <p>Available for Windows. Mac support coming soon.</p>
-
-    <a href="ReplyifyInstaller.exe" class="primary-btn large">
-        Download Replyify
-    </a>
-</section>
-
-<footer>
-    © 2026 Replyify. Built for the future of creators.
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
