@@ -1,26 +1,206 @@
-.glow1, .glow2 {
-    position: absolute;
-    width: 500px;
-    height: 500px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #050816;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Subtle grid overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background: rgba(5, 8, 22, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #8b5cf6;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 140px 10%;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.hero-content p {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    color: #94a3b8;
+    font-size: 20px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    padding: 15px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.primary-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(139,92,246,0.4);
+}
+
+.large {
+    font-size: 18px;
+}
+
+.section {
+    padding: 120px 10%;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section h2 {
+    font-size: 40px;
+    margin-bottom: 70px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px;
+    border-radius: 16px;
+    transition: 0.3s, box-shadow 0.3s, transform 0.3s;
+    transform-style: preserve-3d;
+}
+
+.card p {
+    color: #9ca3af;
+    margin-top: 10px;
+}
+
+/* Add subtle shadow on visible cards */
+.card.visible {
+    box-shadow: 0 20px 40px rgba(139,92,246,0.3);
+}
+
+.alt {
+    background: #0a0f25;
+}
+
+.mock-window {
+    max-width: 700px;
+    margin: auto;
+    background: rgba(255,255,255,0.05);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+}
+
+.window-bar {
+    display: flex;
+    gap: 8px;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.5;
-    z-index: -1;
-    animation: float 6s ease-in-out infinite;
 }
 
-/* Glow initial positions */
-.glow1 {
-    top: -100px;
-    left: 20%;
+.red { background: #ff5f57; }
+.yellow { background: #ffbd2e; }
+.green { background: #28c840; }
+
+.window-content {
+    padding: 30px;
+    text-align: left;
 }
 
-.glow2 {
-    bottom: -100px;
-    right: 20%;
+.comment {
+    margin-bottom: 20px;
+    color: #cbd5e1;
 }
 
-/* Particle trail */
+.reply {
+    background: rgba(139,92,246,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    color: #e0e7ff;
+}
+
+.download p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+}
+
+/* Fade-in with subtle scale on scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Particle cursor trail */
 .particle {
   position: fixed;
   width: 4px;
