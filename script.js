@@ -33,7 +33,7 @@ mockWindow.addEventListener('mouseenter', () => {
     }, 4000);
 });
 
-// 4. Cursor particle trail
+// 4. Cursor particle trail (behind content)
 document.addEventListener('mousemove', e => {
     const particle = document.createElement('div');
     particle.classList.add('particle');
