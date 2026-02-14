@@ -17,19 +17,7 @@ document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mouseleave', () => card.style.transform = '');
 });
 
-// 3. Glows follow mouse slightly
-const glow1 = document.querySelector('.glow1');
-const glow2 = document.querySelector('.glow2');
-document.addEventListener('mousemove', e => {
-    const x = e.clientX / window.innerWidth * 100;
-    const y = e.clientY / window.innerHeight * 100;
-    glow1.style.left = `calc(${x}% - 250px)`;
-    glow1.style.top = `calc(${y}% - 250px)`;
-    glow2.style.right = `calc(${100 - x}% - 250px)`;
-    glow2.style.bottom = `calc(${100 - y}% - 250px)`;
-});
-
-// 4. Mock window AI typing on hover
+// 3. Mock window AI typing on hover
 const typing = document.getElementById('typing');
 const mockWindow = document.getElementById('mock-window');
 mockWindow.addEventListener('mouseenter', () => {
@@ -45,14 +33,24 @@ mockWindow.addEventListener('mouseenter', () => {
     }, 4000);
 });
 
-// 5. Glow color shifts on scroll
+// 4. Glow color and parallax scroll effect
+const glow1 = document.querySelector('.glow1');
+const glow2 = document.querySelector('.glow2');
+
 window.addEventListener('scroll', () => {
-    const hue = 240 + window.scrollY / 5;
+    const scrollY = window.scrollY;
+
+    // subtle vertical parallax
+    glow1.style.transform = `translateY(${scrollY * 0.2}px)`;
+    glow2.style.transform = `translateY(${scrollY * -0.2}px)`;
+
+    // subtle color shift
+    const hue = 240 + scrollY / 10;
     glow1.style.background = `hsl(${hue}, 90%, 50%)`;
     glow2.style.background = `hsl(${hue + 60}, 80%, 50%)`;
 });
 
-// Optional: cursor particle trail
+// 5. Cursor particle trail
 document.addEventListener('mousemove', e => {
     const particle = document.createElement('div');
     particle.classList.add('particle');
