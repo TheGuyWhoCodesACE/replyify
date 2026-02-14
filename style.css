@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: white;
+    line-height: 1.6;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;
+    background: #111827;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.nav-links a:hover {
+    color: #3b82f6;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #cbd5e1;
+}
+
+.btn {
+    background: #3b82f6;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #2563eb;
+}
+
+.about {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.download {
+    padding: 80px 10%;
+    text-align: center;
+    background: #111827;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #0f172a;
+    color: #94a3b8;
+}
