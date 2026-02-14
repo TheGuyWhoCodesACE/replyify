@@ -35,11 +35,12 @@ nav {
     z-index: 1000;
 }
 
-.logo {
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: 1px;
+.logo-img {
+    height: auto;         /* keep aspect ratio */
+    width: 10%;           /* scale down to 10% of container width */
+    margin-right: 10px;
 }
+
 
 .nav-links a {
     color: #94a3b8;
