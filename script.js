@@ -1,16 +1,42 @@
-// FAST TYPING EFFECT FOR ALL TEXT
-function typeText(element, speed = 5) {
-    const text = element.textContent;
-    element.textContent = '';
-    let i = 0;
-    const interval = setInterval(() => {
-        element.textContent += text.charAt(i);
-        i++;
-        if (i >= text.length) clearInterval(interval);
-    }, speed);
+// TYPE TEXT LINE BY LINE
+function typeTextLineByLine(elements, speed = 20) {
+    let index = 0;
+
+    function typeNext() {
+        if (index >= elements.length) return;
+
+        const el = elements[index];
+        const lines = el.innerHTML.split('<br>').map(line => line.trim());
+        el.innerHTML = '';
+
+        let lineIndex = 0;
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                index++;
+                typeNext();
+                return;
+            }
+            let text = lines[lineIndex];
+            let charIndex = 0;
+            const interval = setInterval(() => {
+                el.innerHTML = lines.slice(0, lineIndex).join('<br>') + (lineIndex > 0 ? '<br>' : '') + text.slice(0, charIndex);
+                charIndex++;
+                if (charIndex > text.length) {
+                    clearInterval(interval);
+                    lineIndex++;
+                    setTimeout(typeLine, 50); // short delay between lines
+                }
+            }, speed);
+        }
+
+        typeLine();
+    }
+
+    typeNext();
 }
 
-// Scroll fade-in effect
+// Scroll fade-in
 function initScrollFade() {
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -20,7 +46,7 @@ function initScrollFade() {
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 }
 
-// Card tilt effect
+// Card tilt
 function initCardTilt() {
     document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('mousemove', e => {
@@ -51,7 +77,7 @@ function initMockWindow() {
     });
 }
 
-// Cursor particle trail
+// Cursor trail
 document.addEventListener('mousemove', e => {
     const particle = document.createElement('div');
     particle.classList.add('particle');
@@ -64,7 +90,7 @@ document.addEventListener('mousemove', e => {
 // INIT ALL
 window.addEventListener('DOMContentLoaded', () => {
     const textElements = document.querySelectorAll('h1, h2, h3, p, a, strong, span');
-    textElements.forEach(el => typeText(el, 5));
+    typeTextLineByLine(textElements, 20); // 20ms per character for slightly slower
     initScrollFade();
     initCardTilt();
     initMockWindow();
