@@ -2,14 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Inter", sans-serif;
 }
-
 
 body {
     background: #050816;
     color: white;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* Subtle grid overlay */
@@ -23,6 +23,7 @@ body::before {
     z-index: 0;
 }
 
+/* Navbar */
 nav {
     display: flex;
     justify-content: space-between;
@@ -32,15 +33,14 @@ nav {
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10;
 }
 
-.logo-img {
-    height: auto;         /* keep aspect ratio */
-    width: 10%;           /* scale down to 10% of container width */
-    margin-right: 10px;
+.logo {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
-
 
 .nav-links a {
     color: #94a3b8;
@@ -53,6 +53,7 @@ nav {
     color: #8b5cf6;
 }
 
+/* Hero */
 .hero {
     position: relative;
     text-align: center;
@@ -93,6 +94,7 @@ nav {
     font-size: 18px;
 }
 
+/* Section styles */
 .section {
     padding: 120px 10%;
     text-align: center;
@@ -117,18 +119,17 @@ nav {
     border: 1px solid rgba(255,255,255,0.1);
     padding: 40px;
     border-radius: 16px;
-    transition: 0.3s, box-shadow 0.3s, transform 0.3s;
-    transform-style: preserve-3d;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #8b5cf6;
 }
 
 .card p {
     color: #9ca3af;
     margin-top: 10px;
-}
-
-/* Add subtle shadow on visible cards */
-.card.visible {
-    box-shadow: 0 20px 40px rgba(139,92,246,0.3);
 }
 
 .alt {
@@ -190,41 +191,35 @@ footer {
     color: #64748b;
 }
 
-/* Fade-in with subtle scale on scroll */
+/* Fade-in helper */
 .fade-in {
     opacity: 0;
-    transform: translateY(40px) scale(0.98);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(20px);
+    transition: 1s ease-out;
 }
 
 .fade-in.visible {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
-/* Particle cursor trail behind content */
+/* Cursor trail */
 .particle {
-  position: fixed;
-  width: 4px;
-  height: 4px;
-  background: #8b5cf6;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.8;
-  transform: translate(-50%, -50%);
-  animation: fade 0.5s linear forwards;
-  z-index: 0; /* behind everything */
-}
-
-/* Make sure page content is above particles */
-body > * {
-  position: relative;
-  z-index: 1;
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    transform: translate(-50%, -50%);
+    animation: fade 0.5s linear forwards;
+    z-index: 0;
 }
 
 @keyframes fade { 
-  100% { 
-    opacity: 0; 
-    transform: translate(-50%, -50%) scale(2); 
-  } 
+    100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(2); 
+    } 
 }
