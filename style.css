@@ -200,7 +200,7 @@ footer {
     transform: translateY(0) scale(1);
 }
 
-/* Particle cursor trail */
+/* Particle cursor trail behind content */
 .particle {
   position: fixed;
   width: 4px;
@@ -211,6 +211,13 @@ footer {
   opacity: 0.8;
   transform: translate(-50%, -50%);
   animation: fade 0.5s linear forwards;
+  z-index: 0; /* behind everything */
+}
+
+/* Make sure page content is above particles */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes fade { 
